@@ -1,146 +1,232 @@
-# SecureCloud – Cloud Infrastructure Anomaly Detection System
-
-SecureCloud is a cloud-native security platform that detects anomalous behavior in cloud infrastructure in real time.  
-It analyzes infrastructure logs, learns normal behavioral patterns, and alerts administrators when suspicious activities occur.
+# SecureCloud Lite
+## Real-Time Cloud Log Anomaly Detection System
 
 ---
 
-## Project Overview
+# 1. Project Overview
 
-Modern cloud environments generate thousands of events per minute:
+SecureCloud Lite is a cloud-based security monitoring system designed to detect anomalous behavior in simulated cloud infrastructure logs using machine learning techniques.
 
-- User logins  
-- Resource creation/deletion  
-- IAM policy changes  
-- Network configuration updates  
+The system analyzes log events in real time, identifies deviations from normal behavioral patterns, and generates alerts when suspicious activities occur.
 
-Traditional systems only store logs. SecureCloud goes further:
+This project demonstrates the integration of:
 
-- Processes logs in real time  
-- Applies machine learning to detect abnormal patterns  
-- Generates automated alerts  
-- Provides a security monitoring dashboard  
+- Cloud deployment
+- Event-driven processing
+- Unsupervised machine learning
+- Containerization
+- Full-stack development
 
 ---
 
-## Project Objectives
+# 2. Problem Statement
 
-- Build an event-driven cloud-native architecture
-- Implement real-time anomaly detection
-- Apply unsupervised machine learning
-- Deploy scalable microservices
-- Provide observability and alerting mechanisms
+Modern cloud environments generate continuous activity logs such as:
 
----
+- User login events
+- Resource creation or deletion
+- Permission changes
+- API usage events
 
-## 🏗 System Architecture
+These logs are typically stored but not actively analyzed in real time. Manual monitoring is inefficient and may fail to detect abnormal patterns early.
 
-High-level flow:
+The problem addressed by this project is:
 
-Cloud Logs → Event Stream → Processing Service → ML Model  
-→ Anomaly Classification → Database → Dashboard + Alerts
-
-### Main Components
-
-1. **Log Source**
-   - AWS CloudTrail (or simulated logs)
-
-2. **Event Streaming**
-   - Kafka / AWS Kinesis
-
-3. **Processing Service**
-   - Python (FastAPI)
-   - Runs in Docker container
-   - Deployed on Kubernetes
-
-4. **Machine Learning Model**
-   - Isolation Forest (unsupervised anomaly detection)
-
-5. **Database**
-   - PostgreSQL or DynamoDB
-
-6. **Alert System**
-   - Email notifications (SNS)
-   - Dashboard alerts
-
-7. **Frontend Dashboard**
-   - React
-   - Real-time visualization
+> How can anomalous cloud behavior be detected automatically in real time using machine learning?
 
 ---
 
-## Anomaly Detection Strategy
+# 3. Project Objectives
 
-SecureCloud uses unsupervised learning to detect:
+## General Objective
 
-- Unusual login times
-- Sudden privilege escalations
-- Abnormal resource creation spikes
-- Suspicious geographic access patterns
-- Unusual API usage frequency
+Design and implement a cloud-based system capable of detecting anomalous infrastructure behavior using unsupervised learning.
 
-Initial model: **Isolation Forest**
+## Specific Objectives
+
+- Simulate realistic cloud infrastructure logs
+- Develop a backend service to process log events
+- Implement anomaly detection using Isolation Forest
+- Store and manage processed data
+- Provide a visualization dashboard
+- Deploy the system in a cloud environment using Docker
 
 ---
 
-##  Tech Stack
+# 4. System Scope
 
-### Backend
+This project includes:
+
+- Log simulation (cloud-like events)
+- Real-time anomaly detection
+- Database storage
+- Email alerting system
+- Web dashboard visualization
+- Cloud deployment on a virtual machine
+
+This project does not include:
+
+- Multi-cloud integration
+- Enterprise-grade SIEM functionality
+- Complex distributed streaming clusters
+- Automated remediation
+
+---
+
+# 5. System Architecture
+
+High-level architecture:
+
+Log Generator → Backend API → ML Model  
+Backend → Database  
+Backend → Email Alerts  
+Frontend Dashboard → Backend API  
+
+## Components
+
+### 1. Log Generator
+A Python-based module that simulates cloud events, including:
+
+- Normal user activity
+- Anomalous events
+
+### 2. Backend Service
+Built with FastAPI, responsible for:
+
+- Receiving and processing logs
+- Extracting relevant features
+- Running anomaly detection
+- Storing results
+- Triggering alerts
+
+### 3. Machine Learning Model
+Isolation Forest (unsupervised learning):
+
+- Learns normal behavior patterns
+- Detects outliers
+- Flags anomalous events
+
+### 4. Database
+PostgreSQL database for:
+
+- Log storage
+- Anomaly records
+- Event history
+
+### 5. Frontend Dashboard
+React-based interface that displays:
+
+- Total logs processed
+- Total anomalies detected
+- Timeline of anomalies
+- Detailed anomaly table
+
+### 6. Deployment Environment
+Dockerized application deployed on a cloud virtual machine.
+
+---
+
+# 6. Anomaly Detection Strategy
+
+The system focuses on detecting two types of anomalies:
+
+## 1. Unusual Login Time
+
+If a user typically logs in between 8 AM and 6 PM, a login at 3 AM may be flagged as anomalous.
+
+## 2. Abnormal Resource Creation Spike
+
+If the system detects an unusual number of resource creation events within a short time window, it is flagged as suspicious.
+
+The Isolation Forest model is trained using baseline "normal" simulated behavior and identifies statistical outliers.
+
+---
+
+# 7. Technology Stack
+
+## Backend
 - Python
 - FastAPI
 - Scikit-learn
-- Docker
+- SQLAlchemy
 
-### Cloud & Infrastructure
-- AWS (or GCP)
-- Kubernetes
-- Terraform (optional)
-
-### Streaming
-- Kafka or Kinesis
-
-### Database
-- PostgreSQL or DynamoDB
-
-### Frontend
+## Frontend
 - React
-- WebSockets
+- Axios
 
-### DevOps
-- GitHub Actions
-- Prometheus + Grafana (optional)
+## Database
+- PostgreSQL
 
----
-
-##  Scalability Features
-
-- Event-driven architecture
-- Horizontal Pod Autoscaling (HPA)
-- Microservices design
-- Stateless processing services
+## DevOps & Deployment
+- Docker
+- Docker Compose
+- Cloud VM (AWS EC2 or GCP Compute Engine)
 
 ---
 
-##  Security Considerations
+# 8. Development Methodology
 
-- IAM role-based access control
-- Encrypted communication (TLS)
-- Secure API endpoints
-- Principle of least privilege
+The project will follow an incremental development approach:
+
+1. Log simulation
+2. Backend implementation
+3. ML model integration
+4. Database integration
+5. Frontend development
+6. Containerization
+7. Cloud deployment
+8. Testing and validation
 
 ---
-    
-##  Future Improvements
 
-- Multi-cloud support
-- Deep learning-based detection
+# 9. Expected Results
+
+At completion, the system will:
+
+- Process simulated cloud logs in real time
+- Detect anomalous events automatically
+- Generate email alerts
+- Provide a web-based monitoring dashboard
+- Run fully containerized in a cloud environment
+
+---
+
+# 10. Evaluation Metrics
+
+The system will be evaluated using:
+
+- Detection accuracy
+- False positive rate
+- System response time
+- Stability under simulated load
+- Deployment reproducibility
+
+---
+
+# 11. Limitations
+
+- Uses simulated data instead of production logs
+- Limited anomaly types
+- Single-node deployment
+- No automated remediation system
+
+---
+
+# 12. Future Work
+
+Potential extensions include:
+
+- Integration with real CloudTrail logs
+- Advanced anomaly detection models (LSTM)
+- Multi-node scalable architecture
+- Kubernetes-based deployment
+- Automated response actions
 - Risk scoring system
-- Automated remediation
-- Zero-trust integration
 
 ---
 
+# 13. Conclusion
 
-## 📜 License
+SecureCloud Lite provides a realistic, scalable prototype of a cloud-native anomaly detection system. It demonstrates practical application of machine learning in cloud security while maintaining a feasible development scope for a two-member team.
 
-MIT License
+The project balances technical depth with realistic implementation constraints and showcases competencies in backend development, cloud deployment, and applied machine learning.
