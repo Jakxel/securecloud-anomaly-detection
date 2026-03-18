@@ -6,15 +6,15 @@ This checklist outlines all the steps required to design, implement, deploy, and
 
 #  Phase 1 – Project Planning & Definition
 
-- [ ] Define project scope and objectives
-- [ ] Define core problem statement
-- [ ] Choose cloud provider (AWS / GCP / Azure)
-- [ ] Define system architecture (high-level diagram)
-- [ ] Select technology stack
-- [ ] Assign team roles and responsibilities
-- [ ] Define timeline and milestones
-- [ ] Create GitHub repository
-- [ ] Write initial README.md
+- [*] Define project scope and objectives
+- [*] Define core problem statement
+- [*] Choose cloud provider (AWS / GCP / Azure)
+- [*] Define system architecture (high-level diagram)
+- [*] Select technology stack
+- [*] Assign team roles and responsibilities
+- [*] Define timeline and milestones
+- [*] Create GitHub repository
+- [*] Write initial README.md
 
 Deliverable:
 ✔ Architecture diagram  
